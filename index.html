@@ -1,0 +1,915 @@
+<html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>善工检测 - 建设工程检测仪器专业供应商</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  
+  <!-- Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066CC',
+            secondary: '#FF7D00',
+            dark: '#1D2129',
+            light: '#F2F3F5',
+            muted: '#86909C',
+            success: '#00B42A',
+            warning: '#FF7D00',
+            danger: '#F53F3F',
+            info: '#86909C'
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .transition-transform-opacity {
+        transition-property: transform, opacity;
+      }
+      .hover-scale {
+        @apply hover:scale-105 transition-all duration-300;
+      }
+      .card-shadow {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      }
+      .glass-effect {
+        @apply bg-white/80 backdrop-blur-md;
+      }
+      .badge {
+        @apply absolute top-3 left-3 px-2 py-1 text-xs font-bold rounded-full;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+  <!-- 顶部通知栏 -->
+  <div class="bg-primary text-white text-center py-2 text-sm">
+    <p>限时优惠：全场仪器满10000元立减1000元，满50000元立减6000元 | 咨询热线：400-888-8888</p>
+  </div>
+
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 glass-effect shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="#" class="flex items-center">
+            <i class="fa-solid fa-flask text-primary text-2xl mr-2"></i>
+            <span class="text-2xl font-bold text-primary">善工<span class="text-secondary">仪器</span></span>
+          </a>
+        </div>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#" class="text-dark hover:text-primary font-medium transition-colors duration-200">首页</a>
+          <a href="#products" class="text-dark hover:text-primary font-medium transition-colors duration-200">热门仪器</a>
+          <a href="#categories" class="text-dark hover:text-primary font-medium transition-colors duration-200">仪器分类</a>
+          <a href="#brands" class="text-dark hover:text-primary font-medium transition-colors duration-200">品牌专区</a>
+          <a href="#reviews" class="text-dark hover:text-primary font-medium transition-colors duration-200">用户评价</a>
+          <a href="#about" class="text-dark hover:text-primary font-medium transition-colors duration-200">关于我们</a>
+        </nav>
+        
+        <!-- 导航按钮 -->
+        <div class="flex items-center space-x-4">
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="搜索检测仪器..." class="pl-10 pr-4 py-2 rounded-full bg-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-64">
+            <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-muted"></i>
+          </div>
+          <button class="text-dark hover:text-primary transition-colors duration-200 relative">
+            <i class="fa-solid fa-shopping-cart text-lg"></i>
+            <span class="absolute -top-2 -right-2 bg-secondary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+          </button>
+          <button class="text-dark hover:text-primary transition-colors duration-200">
+            <i class="fa-solid fa-user text-lg"></i>
+          </button>
+          <button id="mobile-menu-button" class="md:hidden text-dark hover:text-primary transition-colors duration-200">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden glass-effect border-t">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">首页</a>
+        <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">热门仪器</a>
+        <a href="#categories" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">仪器分类</a>
+        <a href="#brands" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">品牌专区</a>
+        <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">用户评价</a>
+        <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-dark hover:bg-light hover:text-primary">关于我们</a>
+        <div class="relative mt-4">
+          <input type="text" placeholder="搜索检测仪器..." class="w-full pl-10 pr-4 py-2 rounded-full bg-light focus:outline-none focus:ring-2 focus:ring-primary/50">
+          <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-muted"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="pt-24 md:pt-32 pb-12 md:pb-20 bg-gradient-to-br from-primary/5 to-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-dark mb-4">
+            专业<span class="text-primary">检测仪器</span> 一站式采购
+          </h1>
+          <p class="text-lg md:text-xl text-muted mb-8 max-w-xl">
+            我们提供1000+种建设工程检测仪器，涵盖各类知名品牌，满足您的专业检测需求。
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#products" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center">
+              <span>立即选购</span>
+              <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+            <a href="#categories" class="bg-white hover:bg-light text-primary border border-primary px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 flex items-center">
+              <span>查看分类</span>
+              <i class="fa-solid fa-th-large ml-2"></i>
+            </a>
+          </div>
+          
+          <!-- 统计数据 -->
+          <div class="mt-12 grid grid-cols-3 gap-4">
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+              <div class="text-2xl font-bold text-primary mb-1">1000+</div>
+              <div class="text-sm text-muted">检测仪器</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+              <div class="text-2xl font-bold text-primary mb-1">50+</div>
+              <div class="text-sm text-muted">合作品牌</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+              <div class="text-2xl font-bold text-primary mb-1">10000+</div>
+              <div class="text-sm text-muted">满意客户</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="md:w-1/2 relative">
+          <div class="relative z-10 transform md:translate-x-8 hover-scale">
+            <img src="https://picsum.photos/id/96/600/500" alt="工程检测仪器" class="rounded-2xl shadow-2xl">
+            <div class="absolute -bottom-4 -left-4 bg-secondary text-white rounded-full h-16 w-16 flex items-center justify-center font-bold text-lg">
+              -15%
+            </div>
+          </div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/20 rounded-full blur-3xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特色服务 -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="flex flex-col items-center p-6 rounded-xl bg-light hover-scale text-center">
+          <div class="bg-primary/10 rounded-full p-4 mb-4">
+            <i class="fa-solid fa-certificate text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">正品保障</h3>
+          <p class="text-muted text-sm">所有仪器均为原厂正品，提供完整售后服务</p>
+        </div>
+        
+        <div class="flex flex-col items-center p-6 rounded-xl bg-light hover-scale text-center">
+          <div class="bg-primary/10 rounded-full p-4 mb-4">
+            <i class="fa-solid fa-truck text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">快速配送</h3>
+          <p class="text-muted text-sm">全国配送，专业物流团队保障货物安全</p>
+        </div>
+        
+        <div class="flex flex-col items-center p-6 rounded-xl bg-light hover-scale text-center">
+          <div class="bg-primary/10 rounded-full p-4 mb-4">
+            <i class="fa-solid fa-user-tie text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">专业客服</h3>
+          <p class="text-muted text-sm">10年以上行业经验，提供专业技术支持</p>
+        </div>
+        
+        <div class="flex flex-col items-center p-6 rounded-xl bg-light hover-scale text-center">
+          <div class="bg-primary/10 rounded-full p-4 mb-4">
+            <i class="fa-solid fa-calendar-check-o text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">售后无忧</h3>
+          <p class="text-muted text-sm">7天无理由退换，1年免费维修服务</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门仪器 -->
+  <section id="products" class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+        <div>
+          <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">热门检测仪器</h2>
+          <p class="text-muted max-w-2xl">我们精选的热门检测仪器，每一款都经过严格筛选，品质有保障</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex space-x-2">
+          <button class="category-btn bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">全部</button>
+          <button class="category-btn bg-white hover:bg-light text-dark px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">建筑材料</button>
+          <button class="category-btn bg-white hover:bg-light text-dark px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">主体结构</button>
+          <button class="category-btn bg-white hover:bg-light text-dark px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">钢结构</button>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 仪器卡片 1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/119/400/300" alt="混凝土回弹仪" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="badge bg-secondary text-white">-15%</div>
+            <div class="absolute top-3 right-3">
+              <button class="bg-white/80 hover:bg-white text-dark rounded-full p-2 transition-colors duration-200">
+                <i class="fa-solid fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center mb-2">
+              <div class="text-yellow-400 flex">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-o"></i>
+              </div>
+              <span class="text-muted text-sm ml-2">(128)</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2">电子混凝土回弹仪</h3>
+            <p class="text-muted text-sm mb-4 line-clamp-2">高精度检测混凝土强度，自动数据存储，USB接口导出</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-secondary font-bold text-xl">¥2,599</span>
+                <span class="text-muted line-through text-sm ml-2">¥2,999</span>
+              </div>
+              <button class="bg-primary hover:bg-primary/90 text-white rounded-full p-2 transition-all duration-200 hover:scale-110">
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 仪器卡片 2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/112/400/300" alt="万能材料试验机" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 right-3">
+              <button class="bg-white/80 hover:bg-white text-dark rounded-full p-2 transition-colors duration-200">
+                <i class="fa-solid fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center mb-2">
+              <div class="text-yellow-400 flex">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="text-muted text-sm ml-2">(96)</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2">万能材料试验机</h3>
+            <p class="text-muted text-sm mb-4 line-clamp-2">100kN容量，高精度传感器，微机控制，自动数据处理</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-secondary font-bold text-xl">¥28,999</span>
+                <span class="text-muted line-through text-sm ml-2">¥32,999</span>
+              </div>
+              <button class="bg-primary hover:bg-primary/90 text-white rounded-full p-2 transition-all duration-200 hover:scale-110">
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 仪器卡片 3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/160/400/300" alt="超声波检测仪" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="badge bg-secondary text-white">-20%</div>
+            <div class="absolute top-3 right-3">
+              <button class="bg-white/80 hover:bg-white text-dark rounded-full p-2 transition-colors duration-200">
+                <i class="fa-solid fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center mb-2">
+              <div class="text-yellow-400 flex">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-o"></i>
+              </div>
+              <span class="text-muted text-sm ml-2">(215)</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2">非金属超声波检测仪</h3>
+            <p class="text-muted text-sm mb-4 line-clamp-2">混凝土内部缺陷检测，测强测厚，波形显示存储分析</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-secondary font-bold text-xl">¥15,999</span>
+                <span class="text-muted line-through text-sm ml-2">¥19,999</span>
+              </div>
+              <button class="bg-primary hover:bg-primary/90 text-white rounded-full p-2 transition-all duration-200 hover:scale-110">
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 仪器卡片 4 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/96/400/300" alt="全站仪" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 right-3">
+              <button class="bg-white/80 hover:bg-white text-dark rounded-full p-2 transition-colors duration-200">
+                <i class="fa-solid fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center mb-2">
+              <div class="text-yellow-400 flex">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-o"></i>
+              </div>
+              <span class="text-muted text-sm ml-2">(78)</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2">高精度全站仪</h3>
+            <p class="text-muted text-sm mb-4 line-clamp-2">0.5秒精度，自动目标识别，蓝牙无线传输，内置摄像头</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-secondary font-bold text-xl">¥32,999</span>
+                <span class="text-muted line-through text-sm ml-2">¥36,999</span>
+              </div>
+              <button class="bg-primary hover:bg-primary/90 text-white rounded-full p-2 transition-all duration-200 hover:scale-110">
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-flex items-center justify-center bg-white hover:bg-light text-primary border border-primary px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+          <span>查看更多检测仪器</span>
+          <i class="fa-solid fa-angle-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 仪器详情模态框 (默认隐藏) -->
+  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="relative bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <button id="close-modal" class="absolute top-4 right-4 text-muted hover:text-dark transition-colors">
+        <i class="fa-solid fa-times text-xl"></i>
+      </button>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div class="bg-light rounded-xl overflow-hidden mb-4">
+              <img src="https://picsum.photos/id/119/600/600" alt="电子混凝土回弹仪" class="w-full">
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+              <div class="bg-light rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary">
+                <img src="https://picsum.photos/id/119/150/150" alt="电子混凝土回弹仪" class="w-full">
+              </div>
+              <div class="bg-light rounded-lg overflow-hidden cursor-pointer">
+                <img src="https://picsum.photos/id/120/150/150" alt="电子混凝土回弹仪" class="w-full">
+              </div>
+              <div class="bg-light rounded-lg overflow-hidden cursor-pointer">
+                <img src="https://picsum.photos/id/121/150/150" alt="电子混凝土回弹仪" class="w-full">
+              </div>
+              <div class="bg-light rounded-lg overflow-hidden cursor-pointer">
+                <img src="https://picsum.photos/id/122/150/150" alt="电子混凝土回弹仪" class="w-full">
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="bg-secondary text-white text-xs font-bold px-2 py-1 rounded inline-block mb-2">热销产品</span>
+            <h2 class="text-2xl font-bold mb-2">电子混凝土回弹仪</h2>
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 flex">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-o"></i>
+              </div>
+              <span class="text-muted text-sm ml-2">(128条评价)</span>
+            </div>
+            <div class="bg-light p-4 rounded-lg mb-4">
+              <div class="flex items-center mb-2">
+                <span class="text-muted mr-2">价格:</span>
+                <span class="text-secondary font-bold text-2xl">¥2,599</span>
+                <span class="text-muted line-through text-sm ml-2">¥2,999</span>
+                <span class="text-success text-sm ml-2">节省 ¥400</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-muted mr-2">促销:</span>
+                <span class="text-danger text-sm">限时优惠，立减15%</span>
+              </div>
+            </div>
+            <div class="mb-4">
+              <span class="text-muted mr-2">品牌:</span>
+              <span class="font-medium">科瑞达</span>
+            </div>
+            <div class="mb-4">
+              <span class="text-muted mr-2">型号:</span>
+              <span class="font-medium">HT-225W</span>
+            </div>
+            <div class="mb-4">
+              <span class="text-muted mr-2">库存:</span>
+              <span class="text-success font-medium">有货 (28件)</span>
+            </div>
+            <div class="mb-6">
+              <span class="text-muted mr-2">配送:</span>
+              <span class="font-medium">全国配送，预计3-5天送达</span>
+            </div>
+            <div class="mb-6">
+              <h4 class="font-medium mb-2">数量:</h4>
+              <div class="flex items-center">
+                <button class="w-10 h-10 border border-gray-300 rounded-l-lg flex items-center justify-center hover:bg-light transition-colors">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <input type="number" value="1" min="1" class="w-16 h-10 border-t border-b border-gray-300 text-center focus:outline-none">
+                <button class="w-10 h-10 border border-gray-300 rounded-r-lg flex items-center justify-center hover:bg-light transition-colors">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center">
+                <i class="fa-solid fa-shopping-cart mr-2"></i>
+                <span>加入购物车</span>
+              </button>
+              <button class="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center">
+                <span>立即购买</span>
+              </button>
+              <button class="bg-white hover:bg-light text-primary border border-primary px-4 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+                <i class="fa-solid fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品详情选项卡 -->
+        <div class="mt-12">
+          <div class="flex border-b">
+            <button class="tab-btn border-b-2 border-primary text-primary px-4 py-2 font-medium mr-4">产品详情</button>
+            <button class="tab-btn border-b-2 border-transparent text-muted px-4 py-2 font-medium mr-4 hover:text-primary hover:border-primary/30 transition-colors">技术参数</button>
+            <button class="tab-btn border-b-2 border-transparent text-muted px-4 py-2 font-medium hover:text-primary hover:border-primary/30 transition-colors">包装清单</button>
+            <button class="tab-btn border-b-2 border-transparent text-muted px-4 py-2 font-medium hover:text-primary hover:border-primary/30 transition-colors">售后服务</button>
+          </div>
+          <div class="tab-content pt-6">
+            <div class="prose max-w-none">
+              <p>电子混凝土回弹仪是一种用于评估混凝土抗压强度的非破坏性检测仪器。本仪器采用最新的电子技术，结合传统回弹法原理，能够快速、准确地测量混凝土表面硬度，并根据相关标准换算为混凝土抗压强度。</p>
+              <h3 class="text-lg font-bold mt-4 mb-2">产品特点</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>高精度传感器，测量精度达到±1%</li>
+                <li>大屏幕LCD显示，中文菜单操作，直观简便</li>
+                <li>自动存储1000个测试数据，可随时查询和导出</li>
+                <li>USB接口，方便与计算机连接，实现数据管理和报表生成</li>
+                <li>内置多种测强曲线，适应不同地区和工程需求</li>
+                <li>低功耗设计，一节9V电池可连续工作50小时以上</li>
+                <li>小巧轻便，携带方便，适合现场检测工作</li>
+              </ul>
+              <h3 class="text-lg font-bold mt-4 mb-2">适用范围</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>建筑工程中混凝土构件的强度检测</li>
+                <li>桥梁、隧道等基础设施的混凝土质量评估</li>
+                <li>混凝土试块的强度验证</li>
+                <li>混凝土耐久性研究和评估</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 仪器分类 -->
+  <section id="categories" class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">检测仪器分类</h2>
+        <p class="text-muted max-w-2xl mx-auto">浏览我们丰富的检测仪器分类，满足您不同的检测需求</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <!-- 分类 1 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-bricks text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">建筑材料及构配件</h3>
+            <p class="text-muted text-xs mt-1">286款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 2 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-building text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">主体结构及装饰装修</h3>
+            <p class="text-muted text-xs mt-1">212款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 3 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-steel-beam text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">钢结构</h3>
+            <p class="text-muted text-xs mt-1">156款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 4 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-mountain text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">地基基础</h3>
+            <p class="text-muted text-xs mt-1">178款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 5 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-snowflake text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">建筑节能</h3>
+            <p class="text-muted text-xs mt-1">145款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 6 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-window-maximize text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">建筑幕墙</h3>
+            <p class="text-muted text-xs mt-1">123款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 7 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-road text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">市政工程材料</h3>
+            <p class="text-muted text-xs mt-1">98款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 8 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-car text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">道路工程</h3>
+            <p class="text-muted text-xs mt-1">112款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 9 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-bridge-circle-check text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">桥梁及地下工程</h3>
+            <p class="text-muted text-xs mt-1">87款产品</p>
+          </div>
+        </a>
+        
+        <!-- 分类 10 -->
+        <a href="#" class="group">
+          <div class="bg-light rounded-xl p-6 text-center hover-scale">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <i class="fa-solid fa-plus text-primary text-xl group-hover:text-white"></i>
+            </div>
+            <h3 class="font-medium">其他</h3>
+            <p class="text-muted text-xs mt-1">76款产品</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌专区 -->
+  <section id="brands" class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">品牌专区</h2>
+        <p class="text-muted max-w-2xl mx-auto">我们与全球知名品牌合作，为您提供高品质的检测仪器</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <!-- 品牌 1 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/1/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 2 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/2/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 3 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/3/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 4 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/4/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 5 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/5/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 6 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/6/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 7 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/7/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 8 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/8/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 9 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/9/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+        
+        <!-- 品牌 10 -->
+        <div class="bg-white rounded-xl p-6 flex items-center justify-center hover-scale">
+          <img src="https://picsum.photos/id/10/120/60" alt="品牌Logo" class="max-h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 用户评价 -->
+  <section id="reviews" class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">用户评价</h2>
+        <p class="text-muted max-w-2xl mx-auto">看看我们的客户如何评价我们的产品和服务</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 评价 1 -->
+        <div class="bg-light rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <img src="https://picsum.photos/id/64/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+            <div class="ml-4">
+              <h4 class="font-bold">张工程师</h4>
+              <div class="text-yellow-400 flex text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-muted">"购买的万能材料试验机质量非常好，精度高，操作简单。客服很专业，帮我们解决了很多技术问题。物流也很快，包装非常安全。"</p>
+          <div class="mt-4 text-sm text-muted">购买产品：万能材料试验机</div>
+        </div>
+        
+        <!-- 评价 2 -->
+        <div class="bg-light rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <img src="https://picsum.photos/id/65/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+            <div class="ml-4">
+              <h4 class="font-bold">李技术员</h4>
+              <div class="text-yellow-400 flex text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-o"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-muted">"电子混凝土回弹仪使用非常方便，数据准确，电池续航能力强。价格比市场上同类型产品要低一些，性价比很高。售后服务也很到位。"</p>
+          <div class="mt-4 text-sm text-muted">购买产品：电子混凝土回弹仪</div>
+        </div>
+        
+        <!-- 评价 3 -->
+        <div class="bg-light rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <img src="https://picsum.photos/id/66/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+            <div class="ml-4">
+              <h4 class="font-bold">王检测员</h4>
+              <div class="text-yellow-400 flex text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-o"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-muted">"超声波检测仪性能稳定，波形清晰，操作界面友好。厂家的技术支持非常专业，帮我们解决了复杂环境下的检测难题。唯一的缺点是价格略高。"</p>
+          <div class="mt-4 text-sm text-muted">购买产品：非金属超声波检测仪</div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-flex items-center justify-center bg-white hover:bg-light text-primary border border-primary px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+          <span>查看更多评价</span>
+          <i class="fa-solid fa-angle-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我们 -->
+  <section id="about" class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">关于我们</h2>
+          <p class="text-muted mb-6">善工仪器有限公司是一家专业从事建设工程检测仪器销售和服务的企业。我们拥有10年以上的行业经验，与国内外50多家知名品牌建立了长期合作关系，为全国超过10000家客户提供了优质的检测仪器和专业的技术支持。</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">专业团队</h4>
+                <p class="text-muted text-sm">我们的销售和技术支持团队均具有相关专业背景和丰富的行业经验，能够为您提供专业的产品咨询和技术解决方案。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">优质产品</h4>
+                <p class="text-muted text-sm">我们严格筛选每一款产品，确保所有仪器均符合国家标准和行业要求，为您提供高品质的检测设备。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">完善服务</h4>
+                <p class="text-muted text-sm">我们提供全方位的售前、售中、售后服务，包括产品选型指导、安装调试、操作培训、维修保养等。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap gap-4">
+            <a href="#" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center">
+              <span>联系我们</span>
+              <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+            <a href="#" class="bg-white hover:bg-light text-primary border border-primary px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 flex items-center">
+              <span>在线咨询</span>
+              <i class="fa-solid fa-comment ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+            <img src="https://picsum.photos/id/180/600/400" alt="公司办公环境" class="w-full">
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-secondary/20 rounded-full -z-10 blur-3xl"></div>
+          <div class="absolute -top-6 -left-6 w-40 h-40 bg-primary/20 rounded-full -z-10 blur-3xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系信息 -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">联系我们</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-map-marker text-primary"></i>
+              </div>
+              <div>
+                <p class="text-muted">北京市海淀区中关村科技园区8号楼5层</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-phone text-primary"></i>
+              </div>
+              <div>
+                <p class="text-muted">400-888-8888</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-envelope text-primary"></i>
+              </div>
+              <div>
+                <p class="text-muted">info@shanggong.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 rounded-full p-2 mt-1 mr-4">
+                <i class="fa-solid fa-clock text-primary"></i>
+              </div>
+              <div>
+                <p class="text-muted">周一至周五: 9:00 - 18:00</p>
+                <p class="text-muted">周六至周日: 10:00 - 16:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">首页</a></li>
+            <li><a href="#products" class="text-muted hover:text-primary transition-colors duration-200">热门仪器</a></li>
+            <li><a href="#categories" class="text-muted hover:text-primary transition-colors duration-200">仪器分类</a></li>
+            <li><a href="#brands" class="text-muted hover:text-primary transition-colors duration-200">品牌专区</a></li>
+            <li><a href="#reviews" class="text-muted hover:text-primary transition-colors duration-200">用户评价</a></li>
+            <li><a href="#about" class="text-muted hover:text-primary transition-colors duration-200">关于我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">客户服务</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">购物指南</a></li>
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">支付方式</a></li>
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">配送方式</a></li>
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">售后服务</a></li>
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">常见问题</a></li>
+            <li><a href="#" class="text-muted hover:text-primary transition-colors duration-200">技术支持</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          
